@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>History-send-email</title>
+</head>
+<body>
+<table th:border="1" th:cellpadding="15">
+    <tr>
+        <th>SendEmail</th>
+        <th>ReceiveEmail</th>
+        <th>Status</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Time</th>
+    </tr>
+    <tr th:each="history : ${listHistory}">
+        <td th:text="${history.getSendEmail().getUsername()}"></td>
+        <td th:text="${history.getReceiveEmail().getEmail()}"></td>
+        <td th:text="${history.getStatus()}"></td>
+        <td th:text="${history.getTitle()}"></td>
+        <td th:text="${history.getContent()}"></td>
+        <td th:text="${history.getTime()}"></td>
+    </tr>
+</table>
+<div>
+    <center><h3>
+        <a th:href="@{'/home'(page=${listHistory.number - 1})}" th:if="${listHistory.hasPrevious()}">Back</a>
+        <span th:text="${listHistory.number + 1}"></span>/<span th:text="${listHistory.totalPages}"></span>
+        <a th:href="@{'/home'(page=${listHistory.number + 1})}" th:if="${listHistory.hasNext()}">Next</a>
+    </h3>
+    </center>
+</div>
+</body>
+</html>
