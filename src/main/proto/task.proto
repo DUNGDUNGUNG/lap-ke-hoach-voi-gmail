@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example.grpc";
+option java_outer_classname = "TaskService";
+
+service EmailService {
+    rpc readAllHistorySendEmail (ListHistorySendEmailReq) returns (stream ListHistorySendEmailRes);
+}
+
+message HistorySendEmail {
+    int64 id = 1;
+    string time = 2;
+    string status = 3;
+    string title = 4;
+    string content = 5;
+    SendEmail sendEmail = 6;
+    ReceiveEmail receiveEmail = 7;
+
+
+}
+
+message SendEmail {
+    int64 id = 1;
+    string username = 2;
+    string password = 3;
+    string title = 4;
+    string content = 5;
+}
+
+message ReceiveEmail {
+    int64 id = 1;
+    string email = 2;
+    SendEmail sendEmail = 3;
+}
+
+message ListHistorySendEmailRes {
+    string message = 1;
+    //    repeated HistorySendEmail historySendEmail = 1;
+}
+
+message ListHistorySendEmailReq {
+}

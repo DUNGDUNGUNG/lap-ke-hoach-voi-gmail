@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class HistorySendEmailServiceImpl implements HistorySendEmailService<HistorySendEmail> {
 
@@ -17,6 +19,11 @@ public class HistorySendEmailServiceImpl implements HistorySendEmailService<Hist
     @Override
     public Page<HistorySendEmail> findAll(Pageable pageable) {
         return historySendEmailRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<HistorySendEmail> findAllHistory() {
+        return (List<HistorySendEmail>) historySendEmailRepository.findAll();
     }
 
     @Override
