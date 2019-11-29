@@ -8,19 +8,19 @@ service EmailService {
     rpc readAllHistorySendEmail (ListHistorySendEmailReq) returns (stream ListHistorySendEmailRes);
 }
 
-message HistorySendEmail {
+message HistorySendEmailM {
     int64 id = 1;
     string time = 2;
     string status = 3;
     string title = 4;
     string content = 5;
-    SendEmail sendEmail = 6;
-    ReceiveEmail receiveEmail = 7;
+    SendEmailM sendEmailM = 6;
+    ReceiveEmailM receiveEmail = 7;
 
 
 }
 
-message SendEmail {
+message SendEmailM {
     int64 id = 1;
     string username = 2;
     string password = 3;
@@ -28,15 +28,14 @@ message SendEmail {
     string content = 5;
 }
 
-message ReceiveEmail {
+message ReceiveEmailM {
     int64 id = 1;
     string email = 2;
-    SendEmail sendEmail = 3;
+    SendEmailM sendEmailM = 3;
 }
 
 message ListHistorySendEmailRes {
-    string message = 1;
-    //    repeated HistorySendEmail historySendEmail = 1;
+    repeated HistorySendEmailM historySendEmailM = 1;
 }
 
 message ListHistorySendEmailReq {
